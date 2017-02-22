@@ -247,7 +247,7 @@
   </property>
   <property>
     <name>hive.exec.dynamic.partition.mode</name>
-    <value>strict</value>
+    <value>nostrict</value>
     <description>
       In strict mode, the user must specify at least one static partition
       in case the user accidentally overwrites all partitions.
@@ -725,12 +725,12 @@
   </property>
   <property>
     <name>datanucleus.schema.autoCreateAll</name>
-    <value>false</value>
+    <value>true</value>
     <description>Auto creates necessary schema on a startup if one doesn't exist. Set this to false, after creating it once.To enable auto create also set hive.metastore.schema.verification=false. Auto creation is not recommended for production use cases, run schematool command instead.</description>
   </property>
   <property>
     <name>hive.metastore.schema.verification</name>
-    <value>true</value>
+    <value>false</value>
     <description>
       Enforce metastore schema version consistency.
       True: Verify that version information stored in is compatible with one from Hive jars.  Also disable automatic
