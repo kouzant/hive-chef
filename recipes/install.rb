@@ -116,7 +116,7 @@ end
 # Download hive-testbench
 git '/home/glassfish/hive-testbench' do
    repository 'git@github.com:SirOibaf/hive-testbench.git'
-   revision hive14
+   revision 'hive14'
    action :checkout
    user 'glassfish'
    group 'glassfish'
