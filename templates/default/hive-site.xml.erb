@@ -724,6 +724,11 @@
     <description>metadata store type</description>
   </property>
   <property>
+    <name>datanucleus.rdbms.mysql.engineType</name>
+    <value>ndbcluster</value>
+    <description>Engine for MySQL. Default ndbcluster.</description>
+  </property>
+  <property>
     <name>datanucleus.schema.autoCreateAll</name>
     <value>true</value>
     <description>Auto creates necessary schema on a startup if one doesn't exist. Set this to false, after creating it once.To enable auto create also set hive.metastore.schema.verification=false. Auto creation is not recommended for production use cases, run schematool command instead.</description>
