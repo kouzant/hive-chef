@@ -113,11 +113,20 @@ bash 'extract-tez' do
      not_if { ::File.exists?( "#{tez_downloaded}" ) }
 end
 
-# Download hive-testbench
+# Download and compile hive-testbench
 git '/home/glassfish/hive-testbench' do
    repository 'git@github.com:SirOibaf/hive-testbench.git'
    revision 'hive14'
    action :sync
    user 'glassfish'
    group 'glassfish'
+end
+
+bash 'compile hive-testbench' do
+    user 'glassfish'
+    group 'glassfish'
+    code <<-EOH
+        cd /home/glassfish/hive-testbench
+        ./tpcds-build.sh
+    EOH
 end
