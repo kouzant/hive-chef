@@ -6,7 +6,7 @@ include_attribute "kzookeeper"
 default.hive2.user                    = "hive"
 default.hive2.group                   = node.apache_hadoop.group
 default.hive2.version                 = "2.2.0-SNAPSHOT"
-default.hive2.url                     = "#{node.download_url}/apache-hive-#{node.hive2.version}-bin.tar.gz"
+default.hive2.url                     = "alfred.sics.se:8000/apache-hive-#{node.hive2.version}-bin.tar.gz"
 default.hive2.port                    = "2222"
 default.hive2.dir                     = "/srv"
 default.hive2.home                    =  node.hive2.dir + "/apache-hive-" + node.hive2.version + "-bin"
