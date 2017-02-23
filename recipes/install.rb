@@ -23,7 +23,7 @@ group node.hive2.group do
 end
 
 # Install packages
-apt_package ['git', 'maven', 'vim', 'htop']
+apt_package ['git', 'maven', 'vim', 'htop', 'tmux']
 
 package_url = "#{node.hive2.url}"
 base_package_filename = File.basename(package_url)
