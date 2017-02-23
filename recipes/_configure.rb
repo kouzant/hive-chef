@@ -90,6 +90,10 @@ template "#{node.hive2.base_dir}/conf/hive-env.sh" do
 end
 
 # Overwrite map-reduce memory settings
+file "#{node.apache_hadoop.conf_dir}/mapred-site.xml" do
+  action :delete
+end
+
 template "#{node.apache_hadoop.conf_dir}/mapred-site.xml" do
   source "mapred-site.xml.erb"
   owner node.apache_hadoop.hdfs.user
