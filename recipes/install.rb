@@ -113,3 +113,11 @@ bash 'extract-tez' do
      not_if { ::File.exists?( "#{tez_downloaded}" ) }
 end
 
+# Download hive-testbench
+git '/home/glassfish/hive-testbench' do
+   repository 'git@github.com:SirOibaf/hive-testbench.git'
+   revision hive14
+   action :checkout
+   user 'glassfish'
+   group 'glassfish'
+end
