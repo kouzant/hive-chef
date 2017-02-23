@@ -117,7 +117,7 @@ end
 git '/home/glassfish/hive-testbench' do
    repository 'git@github.com:SirOibaf/hive-testbench.git'
    revision 'hive14'
-   action :checkout
+   action :sync
    user 'glassfish'
    group 'glassfish'
 end
