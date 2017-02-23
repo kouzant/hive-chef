@@ -23,7 +23,8 @@ group node.hive2.group do
 end
 
 # Install maven and git
-apt_package 'git', 'maven'
+apt_package 'git'
+apt_package 'maven'
 
 package_url = "#{node.hive2.url}"
 base_package_filename = File.basename(package_url)
