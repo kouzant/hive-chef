@@ -116,7 +116,7 @@ end
 
 # Download and compile hive-testbench
 git '/home/glassfish/hive-testbench' do
-   repository 'git@github.com:SirOibaf/hive-testbench.git'
+   repository 'https://github.com/SirOibaf/hive-testbench.git'
    revision 'hive14'
    action :sync
    user 'glassfish'
