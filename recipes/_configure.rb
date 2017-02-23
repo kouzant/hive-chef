@@ -67,7 +67,7 @@ template "#{node.hive2.base_dir}/conf/hive-site.xml" do
   owner node.hive2.user
   group node.hive2.group
   mode 0655
-  variables({ 
+  variables({
               :private_ip => my_ip,
               :nn_endpoint => nn_endpoint,
               :mysql_endpoint => mysql_endpoint,
@@ -86,6 +86,14 @@ template "#{node.hive2.base_dir}/conf/hive-env.sh" do
   source "hive-env.sh.erb"
   owner node.hive2.user
   group node.hive2.group
+  mode 0655
+end
+
+# Overwrite map-reduce memory settings
+template "#{node.apache_hadoop.conf_dir}/mapred-site.xml" do
+  source "mapred-site.xml.erb"
+  owner node.apache_hadoop.hdfs.user
+  group node.apache_hadoop.group
   mode 0655
 end
 
