@@ -58,10 +58,6 @@ for d in tmp_dirs
   end
 end
 
-file "#{node.hive2.base_dir}/conf/hive-site.xml" do
-  action :delete
-end
-
 template "#{node.hive2.base_dir}/conf/hive-site.xml" do
   source "hive-site.xml.erb"
   owner node.hive2.user
@@ -77,10 +73,6 @@ template "#{node.hive2.base_dir}/conf/hive-site.xml" do
             })
 end
 
-
-file "#{node.hive2.base_dir}/conf/hive-env.sh.erb" do
-  action :delete
-end
 
 template "#{node.hive2.base_dir}/conf/hive-env.sh" do
   source "hive-env.sh.erb"

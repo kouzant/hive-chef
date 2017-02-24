@@ -25,10 +25,34 @@ end
 # Install packages
 apt_package ['git', 'maven', 'vim', 'htop', 'tmux']
 
+# Install hive
 package_url = "#{node.hive2.url}"
 base_package_filename = File.basename(package_url)
 cached_package_filename = "/tmp/#{base_package_filename}"
 
+# Remove old hive installation
+# Remove old download
+file "#{cached_package_filename}" do
+  owner "#{node.hive2.user}"
+  action :delete
+end
+
+# Remove directory
+directory '#{node.hive2.dir}' do
+  user "root"
+  group node.hive2.group
+  recursive true
+  action :delete
+end
+
+# Remove soft link
+link "#{node.hive2.base_dir}" do
+  user "root"
+  group node.hive2.group
+  action :delete
+end
+
+# Download Hive
 remote_file cached_package_filename do
   source package_url
   owner "#{node.hive2.user}"
@@ -51,10 +75,8 @@ bash 'extract-hive' do
                 ln -s #{node.hive2.home} #{node.hive2.base_dir}
                 chown -R #{node.hive2.user}:#{node.hive2.group} #{node.hive2.home}
                 chown -R #{node.hive2.user}:#{node.hive2.group} #{node.hive2.base_dir}
-                touch #{hive_downloaded}
                 chown -R #{node.hive2.user}:#{node.hive2.group} #{hive_downloaded}
         EOH
-     not_if { ::File.exists?( "#{hive_downloaded}" ) }
 end
 
 
@@ -92,7 +114,7 @@ remote_file cached_package_filename do
   action :create_if_missing
 end
 
-# Extract Hive
+# Extract Tez
 tez_downloaded = "#{node.tez.home}/.tez_extracted_#{node.tez.version}"
 
 bash 'extract-tez' do
