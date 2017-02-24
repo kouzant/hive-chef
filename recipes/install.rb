@@ -61,7 +61,6 @@ remote_file cached_package_filename do
 end
 
 # Extract Hive
-hive_downloaded = "#{node.hive2.home}/.hive_extracted_#{node.hive2.version}"
 
 bash 'extract-hive' do
         user "root"
@@ -75,7 +74,6 @@ bash 'extract-hive' do
                 ln -s #{node.hive2.home} #{node.hive2.base_dir}
                 chown -R #{node.hive2.user}:#{node.hive2.group} #{node.hive2.home}
                 chown -R #{node.hive2.user}:#{node.hive2.group} #{node.hive2.base_dir}
-                chown -R #{node.hive2.user}:#{node.hive2.group} #{hive_downloaded}
         EOH
 end
 
