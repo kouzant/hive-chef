@@ -82,14 +82,14 @@ template "#{node.hive2.base_dir}/conf/hive-env.sh" do
 end
 
 # Overwrite map-reduce memory settings
-file "#{node.apache_hadoop.conf_dir}/mapred-site.xml" do
+file "#{node.hops.conf_dir}/mapred-site.xml" do
   action :delete
 end
 
-template "#{node.apache_hadoop.conf_dir}/mapred-site.xml" do
+template "#{node.hops.conf_dir}/mapred-site.xml" do
   source "mapred-site.xml.erb"
-  owner node.apache_hadoop.hdfs.user
-  group node.apache_hadoop.group
+  owner node.hops.hdfs.user
+  group node.hops.group
   mode 0655
 end
 
