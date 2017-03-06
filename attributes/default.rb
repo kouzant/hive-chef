@@ -1,10 +1,10 @@
 include_attribute "kagent"
 include_attribute "ndb"
-include_attribute "apache_hadoop"
+include_attribute "hops"
 include_attribute "kzookeeper"
 
 default.hive2.user                    = "hive"
-default.hive2.group                   = node.apache_hadoop.group
+default.hive2.group                   = node.hops.group
 default.hive2.version                 = "2.2.0-SNAPSHOT"
 default.hive2.url                     = "#{node.download_url}/apache-hive-#{node.hive2.version}-bin-dev.tar.gz"
 default.hive2.port                    = "2222"
@@ -14,6 +14,8 @@ default.hive2.base_dir                =  node.hive2.dir + "/apache-hive"
 default.hive2.keystore                = "#{node.kagent.base_dir}/node_server_keystore.jks"
 default.hive2.keystore_password       = "changeit"
 
+default.hive2.mysql_host              = "10.0.2.15"
+default.hive2.mysql_port              = "3306"
 default.hive2.mysql_user              = "hive"
 default.hive2.mysql_password          = "hive"
 
@@ -26,7 +28,7 @@ default.hive2.systemd                 = "true"
 
 
 default.tez.user                    = "tez"
-default.tez.group                   = node.apache_hadoop.group
+default.tez.group                   = node.hops.group
 default.tez.version                 = "0.8.4"
 default.tez.url                     = "#{node.download_url}/apache-tez-#{node.tez.version}-bin.tar.gz"
 default.tez.dir                     = "/srv"

@@ -11,7 +11,6 @@ source_url       "https://github.com/hopshadoop/hive-chef"
 
 depends          "ndb"
 depends          "hops"
-depends          "apache_hadoop"
 depends          "kagent"
 depends          "java"
 depends          "kzookeeper"
