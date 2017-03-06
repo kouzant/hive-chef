@@ -1,7 +1,7 @@
-include_recipe "hops::wrap"
+#include_recipe "hops::wrap"
 
 my_ip = my_private_ip()
-nn_endpoint = private_recipe_ip("apache_hadoop", "nn") + ":#{node.apache_hadoop.nn.port}"
+nn_endpoint = private_recipe_ip("hops", "nn") + ":#{node.hops.nn.port}"
 
 zk_ips = private_recipe_ips('kzookeeper', 'default')
 zk_endpoints = zk_ips.join(",")
@@ -20,7 +20,7 @@ end
 home = "/user/" + node.hive2.user
 
 magic_shell_environment 'HADOOP_HOME' do
-  value "#{node.apache_hadoop.base_dir}"
+  value "#{node.hops.base_dir}"
 end
 
 magic_shell_environment 'HIVE_HOME' do
@@ -28,7 +28,7 @@ magic_shell_environment 'HIVE_HOME' do
 end
 
 magic_shell_environment 'PATH' do
-  value "$PATH:#{node.apache_hadoop.base_dir}/bin:#{node.hive2.base_dir}/bin"
+  value "$PATH:#{node.hops.base_dir}/bin:#{node.hive2.base_dir}/bin"
 end
 
 #
@@ -42,19 +42,19 @@ end
 cookbook_file "#{node.hive2.base_dir}/lib/mysql-connector-java-5.1.40-bin.jar" do
   source "mysql-connector-java-5.1.40-bin.jar"
   owner node.hive2.user
-  group node.apache_hadoop.group
+  group node.hops.group
   mode "0644"
 end
 
 hive_dir="#{home}/#{node.hive2.user}"
 tmp_dirs   = [ hive_dir, hive_dir + "/warehouse" ]
 for d in tmp_dirs
-  apache_hadoop_hdfs_directory d do
+  hops_hdfs_directory d do
     action :create_as_superuser
     owner node.hive2.user
     group node.hive2.group
     mode "1770"
-    not_if ". #{node.apache_hadoop.home}/sbin/set-env.sh && #{node.apache_hadoop.home}/bin/hdfs dfs -test -d #{d}"
+    not_if ". #{node.hops.home}/sbin/set-env.sh && #{node.hops.home}/bin/hdfs dfs -test -d #{d}"
   end
 end
 

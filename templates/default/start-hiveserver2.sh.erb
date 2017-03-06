@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export HADOOP_HOME=<%= node.apache_hadoop.base_dir %>
+export HADOOP_HOME=<%= node.hops.base_dir %>
 
 PID_FILE=<%= node.hive2.server2.pid_file %>
 if [ -f $PID_FILE ] ; then

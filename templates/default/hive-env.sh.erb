@@ -24,7 +24,7 @@
 
 
 # Hive Client memory usage can be an issue if a large number of clients
-# are running at the same time. The flags below have been useful in 
+# are running at the same time. The flags below have been useful in
 # reducing memory usage:
 #
 # if [ "$SERVICE" = "cli" ]; then
@@ -39,13 +39,13 @@
 #
 # export HADOOP_HEAPSIZE=1024
 #
-# Larger heap size may be required when running queries over large number of files or partitions. 
-# By default hive shell scripts use a heap size of 256 (MB).  Larger heap size would also be 
+# Larger heap size may be required when running queries over large number of files or partitions.
+# By default hive shell scripts use a heap size of 256 (MB).  Larger heap size would also be
 # appropriate for hive server.
 
 
 # Set HADOOP_HOME to point to a specific hadoop install directory
-HADOOP_HOME=<%= node.apache_hadoop.base_dir %>
+HADOOP_HOME=<%= node.hops.base_dir %>
 
 # Hive Configuration Directory can be controlled by:
 export HIVE_CONF_DIR=<%= node.hive2.base_dir %>/conf
