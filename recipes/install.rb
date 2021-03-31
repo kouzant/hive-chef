@@ -1,4 +1,4 @@
-include_recipe "java"
+# i
 
 my_ip = my_private_ip()
 
